@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<!--
+  INTERNAL OPERATING DOC — founder + cofounder source of truth.
+  Placeholder agency name: "VYRA" — swap for your real name everywhere.
+  Anything marked  ▸ DECIDE  or  [ fill ]  is for you two to settle.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VYRA — Operating Doc</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:        #08080a;
+    --black-2:      #0d0d10;
+    --black-3:      #131318;
+    --black-4:      #1b1b22;
+    --black-5:      #25252e;
+    --purple-bright:#c9b3ff;
+    --purple:       #9d6bff;
+    --purple-mid:   #7c4dff;
+    --purple-dim:   #5d36c4;
+    --purple-muted: #361f6b;
+    --purple-ghost: #18112e;
+    --white:        #f4f3f8;
+    --white-dim:    #a6a3b2;
+    --white-ghost:  #56535f;
+    --amber:        #f0b955;
+    --red:          #e2607a;
+    --green:        #6ee0a0;
+    --border:        rgba(157,107,255,0.12);
+    --border-strong: rgba(157,107,255,0.26);
+  }
+
+  html { font-size: 16px; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    line-height: 1.7;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--purple-muted); color: var(--purple-bright); }
+
+  .page { max-width: 920px; margin: 0 auto; padding: 72px 48px 120px; }
+
+  /* HEADER */
+  .doc-header { border-bottom: 0.5px solid var(--border-strong); padding-bottom: 44px; margin-bottom: 64px; }
+  .doc-eyebrow {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--purple); margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+  }
+  .doc-eyebrow::after { content:''; flex:1; height:0.5px; background: var(--border); max-width: 60px; }
+  .doc-title { font-size: clamp(34px, 5vw, 52px); font-weight: 800; line-height: 1.05; letter-spacing: -0.035em; margin-bottom: 18px; }
+  .doc-title span { background: linear-gradient(120deg, var(--purple-bright), var(--purple-mid)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .doc-subtitle { font-size: 15px; color: var(--white-dim); max-width: 560px; line-height: 1.7; }
+  .doc-meta { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .meta-pill { font-size: 11px; font-weight: 500; padding: 5px 14px; border: 0.5px solid var(--border-strong); border-radius: 20px; color: var(--white-dim); letter-spacing: 0.04em; }
+
+  /* TOC */
+  .toc { background: var(--black-3); border: 0.5px solid var(--border); border-radius: 14px; padding: 22px 26px; margin-bottom: 64px; }
+  .toc-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white-ghost); margin-bottom: 14px; }
+  .toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 28px; }
+  .toc-grid a { font-size: 13.5px; color: var(--white-dim); text-decoration: none; transition: color 0.18s; display: flex; gap: 10px; }
+  .toc-grid a:hover { color: var(--purple-bright); }
+  .toc-grid a .tn { color: var(--purple); font-weight: 600; font-size: 11px; padding-top: 2px; }
+
+  /* SECTIONS */
+  .section { margin-bottom: 76px; scroll-margin-top: 24px; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 32px; }
+  .section-num { font-size: 11px; font-weight: 600; color: var(--purple-dim); letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; padding-top: 2px; }
+  .section-title { font-size: 24px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.2; }
+  .section-divider { height: 0.5px; background: var(--border); margin-bottom: 76px; }
+
+  p.lead { font-size: 15px; color: var(--white-dim); line-height: 1.75; margin-bottom: 22px; }
+  p.lead strong { color: var(--white); font-weight: 600; }
+
+  /* POSITIONING */
+  .position-block { background: var(--black-3); border: 0.5px solid var(--border-strong); border-radius: 16px; padding: 38px 42px; position: relative; overflow: hidden; }
+  .position-block::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background: linear-gradient(90deg, transparent, var(--purple), transparent); }
+  .position-label { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--purple-dim); margin-bottom: 16px; }
+  .position-statement { font-size: clamp(19px, 3vw, 26px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.35; margin-bottom: 18px; }
+  .position-statement em { font-style: normal; color: var(--purple-bright); }
+  .position-sub { font-size: 14px; color: var(--white-dim); line-height: 1.7; max-width: 600px; }
+
+  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+  .mini { background: var(--black-3); border: 0.5px solid var(--border); border-radius: 12px; padding: 24px 26px; }
+  .mini-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
+  .mini-label.is { color: var(--green); }
+  .mini-label.not { color: var(--red); }
+  .mini ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .mini li { font-size: 13.5px; color: var(--white-dim); line-height: 1.5; padding-left: 18px; position: relative; }
+  .mini li::before { content: '—'; position: absolute; left: 0; color: var(--white-ghost); }
+
+  /* LEAKS */
+  .leak-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .leak-card { background: var(--black-3); border: 0.5px solid rgba(226,96,122,0.22); border-radius: 14px; padding: 28px 30px; }
+  .leak-num { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 12px; }
+  .leak-name { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; }
+  .leak-body { font-size: 13.5px; color: var(--white-dim); line-height: 1.7; }
+  .leak-body strong { color: var(--white); font-weight: 600; }
+  .wedge { margin-top: 22px; background: var(--purple-ghost); border: 0.5px solid var(--border-strong); border-radius: 12px; padding: 22px 26px; font-size: 14px; color: var(--white-dim); line-height: 1.7; }
+  .wedge strong { color: var(--purple-bright); font-weight: 600; }
+
+  /* OFFERS */
+  .offer { background: var(--black-3); border: 0.5px solid var(--border); border-radius: 16px; padding: 32px 34px; margin-bottom: 16px; position: relative; overflow: hidden; }
+  .offer::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background: linear-gradient(90deg, transparent, var(--purple), transparent); opacity: 0.55; }
+  .offer.upsell { border-style: dashed; }
+  .offer-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 6px; }
+  .offer-badge { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple-bright); background: var(--purple-muted); padding: 4px 11px; border-radius: 20px; margin-bottom: 14px; }
+  .status { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 11px; border-radius: 20px; white-space: nowrap; }
+  .status.live { background: rgba(110,224,160,0.14); color: var(--green); }
+  .status.val { background: rgba(240,185,85,0.14); color: var(--amber); }
+  .status.up { background: rgba(157,107,255,0.14); color: var(--purple-bright); }
+  .offer-name { font-size: 21px; font-weight: 700; letter-spacing: -0.025em; margin-bottom: 6px; }
+  .offer-for { font-size: 13px; font-weight: 500; color: var(--purple); margin-bottom: 18px; }
+  .offer-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 32px; margin-top: 6px; }
+  .field-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white-ghost); margin-bottom: 8px; }
+  .field-body { font-size: 13.5px; color: var(--white-dim); line-height: 1.6; }
+  .offer-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .offer-list li { font-size: 13.5px; color: var(--white); display: flex; gap: 10px; line-height: 1.45; }
+  .offer-list li .t { color: var(--purple-bright); flex-shrink: 0; }
+  .promise { font-size: 13.5px; color: var(--purple-bright); font-weight: 500; }
+
+  /* ICP */
+  .icp-card { background: var(--black-3); border: 0.5px solid var(--border); border-radius: 16px; padding: 32px 34px; margin-bottom: 16px; }
+  .icp-tag { display:inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 11px; border-radius: 20px; margin-bottom: 14px; }
+  .icp-tag.a { background: rgba(157,107,255,0.16); color: var(--purple-bright); }
+  .icp-tag.b { background: rgba(124,77,255,0.16); color: #b9a0ff; }
+  .icp-name { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; }
+  .icp-role { font-size: 13px; color: var(--white-dim); margin-bottom: 22px; }
+  .icp-row { display: grid; grid-template-columns: 150px 1fr; gap: 20px; padding: 16px 0; border-top: 0.5px solid var(--border); }
+  .icp-row:first-of-type { border-top: none; padding-top: 0; }
+  .icp-rl { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white-ghost); padding-top: 2px; }
+  .icp-rv { font-size: 13.5px; color: var(--white-dim); line-height: 1.6; }
+  .icp-rv strong { color: var(--white); font-weight: 600; }
+  .monologue { font-style: italic; border-left: 2px solid var(--purple-muted); padding-left: 14px; color: var(--white-dim); }
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .chips span { font-size: 12px; color: var(--white); background: var(--black-5); padding: 4px 11px; border-radius: 20px; }
+
+  /* DELIVERY */
+  .deliver-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .deliver-card { background: var(--black-3); border: 0.5px solid var(--border); border-radius: 12px; padding: 26px 28px; }
+  .deliver-step { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--purple); margin-bottom: 10px; }
+  .deliver-title { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 10px; }
+  .deliver-body { font-size: 13.5px; color: var(--white-dim); line-height: 1.65; }
+  .deliver-body strong { color: var(--white); font-weight: 600; }
+
+  /* SPEED BARS */
+  .bar-row { display: grid; grid-template-columns: 150px 1fr 60px; gap: 16px; align-items: center; margin-bottom: 16px; }
+  .bar-label { font-size: 13px; color: var(--white-dim); }
+  .bar-track { height: 7px; background: var(--black-5); border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--purple-dim), var(--purple)); }
+  .bar-fill.slow { background: linear-gradient(90deg, #5a2030, var(--red)); }
+  .bar-pct { font-size: 13px; font-weight: 700; color: var(--purple-bright); text-align: right; }
+  .bar-pct.slow { color: var(--red); }
+  .note { font-size: 13.5px; color: var(--white-dim); line-height: 1.7; padding: 20px 24px; background: var(--black-3); border-radius: 10px; border-left: 2px solid var(--purple-dim); margin-top: 24px; }
+  .note strong { color: var(--purple-bright); }
+  .source { font-size: 11px; color: var(--white-ghost); margin-top: 12px; }
+
+  /* DECISIONS */
+  .decision { background: var(--black-3); border: 0.5px solid rgba(240,185,85,0.25); border-radius: 12px; padding: 22px 26px; margin-bottom: 12px; }
+  .decision-q { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 8px; display: flex; gap: 10px; }
+  .decision-q .marker { color: var(--amber); flex-shrink: 0; font-weight: 700; }
+  .decision-body { font-size: 13.5px; color: var(--white-dim); line-height: 1.65; padding-left: 24px; }
+
+  /* NEXT */
+  .next-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .next-card { background: var(--black-3); border: 0.5px solid var(--border); border-radius: 12px; padding: 24px 26px; }
+  .next-title { font-size: 14px; font-weight: 700; margin-bottom: 14px; color: var(--purple-bright); }
+  .next-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .next-card li { font-size: 13.5px; color: var(--white-dim); line-height: 1.5; padding-left: 24px; position: relative; }
+  .next-card li::before { content: '☐'; position: absolute; left: 0; color: var(--white-ghost); }
+
+  /* highlighted / standout section */
+  .section.action-block {
+    background: linear-gradient(160deg, var(--purple-ghost), var(--black-3));
+    border: 0.5px solid var(--border-strong);
+    border-radius: 18px;
+    padding: 42px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .section.action-block::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--purple), transparent);
+  }
+  .section.action-block .next-card { background: var(--black-2); border-color: var(--border-strong); }
+
+  .next-card.feature { grid-column: 1 / -1; padding: 28px 30px; }
+  .build-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-top: 4px; }
+  .build-item { background: rgba(8,8,10,0.55); border: 0.5px solid var(--border); border-radius: 10px; padding: 18px 18px; }
+  .bi-name { font-size: 14px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; display: flex; align-items: center; gap: 9px; }
+  .bi-name::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--purple); box-shadow: 0 0 9px var(--purple); flex-shrink: 0; }
+  .bi-note { font-size: 12.5px; color: var(--white-dim); line-height: 1.55; }
+
+  /* FOOTER */
+  .doc-footer { border-top: 0.5px solid var(--border); padding-top: 32px; margin-top: 88px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-brand { font-size: 16px; font-weight: 800; letter-spacing: -0.03em; }
+  .footer-note { font-size: 12px; color: var(--white-ghost); }
+
+  /* tablet / small laptop */
+  @media (max-width: 720px) {
+    .page { padding: 52px 22px 80px; }
+    .twocol, .leak-grid, .offer-grid2, .deliver-grid, .next-grid, .toc-grid { grid-template-columns: 1fr; }
+    .icp-row { grid-template-columns: 1fr; gap: 6px; }
+    .bar-row { grid-template-columns: 96px 1fr 46px; gap: 12px; }
+    .section { margin-bottom: 58px; }
+    .section-divider { margin-bottom: 58px; }
+    .position-block { padding: 30px 26px; }
+    .offer, .icp-card { padding: 26px 24px; }
+    .next-card.feature { padding: 22px 22px; }
+    .section.action-block { padding: 26px 20px; }
+    .offer-top { gap: 10px; }
+    .doc-header { margin-bottom: 52px; }
+  }
+
+  /* phones */
+  @media (max-width: 480px) {
+    .page { padding: 44px 16px 72px; }
+    .doc-header { padding-bottom: 32px; margin-bottom: 44px; }
+    .doc-title { font-size: 30px; line-height: 1.1; }
+    .doc-subtitle { font-size: 14px; }
+    .doc-meta { gap: 8px; }
+    .meta-pill { font-size: 10px; padding: 4px 11px; }
+    .toc { padding: 18px 18px; margin-bottom: 48px; }
+    .section { margin-bottom: 48px; }
+    .section-divider { margin-bottom: 48px; }
+    .section-header { gap: 12px; margin-bottom: 24px; }
+    .section-title { font-size: 20px; }
+    .section-num { font-size: 10px; }
+    p.lead { font-size: 14px; }
+    .position-statement { font-size: 19px; }
+    .position-block { padding: 26px 20px; }
+    .offer, .icp-card { padding: 22px 18px; }
+    .offer-name { font-size: 19px; }
+    .icp-name { font-size: 18px; }
+    .deliver-card { padding: 22px 20px; }
+    .note { padding: 18px 18px; }
+    .build-item { padding: 16px 16px; }
+    .section.action-block { padding: 24px 16px; }
+    .bar-row { grid-template-columns: 80px 1fr 42px; gap: 10px; }
+    .bar-label { font-size: 12px; }
+    .doc-footer { flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 60px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="doc-eyebrow">Internal Operating Doc · Founders Only</div>
+    <h1 class="doc-title"><span>VYRA</span> — what we sell, to whom, and how.</h1>
+    <p class="doc-subtitle">The single source of truth for the agency. Positioning, offers, ICP and delivery in one place so we both sell the same thing the same way. Living document — update it instead of arguing in DMs.</p>
+    <div class="doc-meta">
+      <span class="meta-pill">AI / Marketing agency</span>
+      <span class="meta-pill">High-ticket clients</span>
+      <span class="meta-pill">v0.1 — draft</span>
+      <span class="meta-pill">Owner: [ founder ] + [ cofounder ]</span>
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-label">Contents</div>
+    <div class="toc-grid">
+      <a href="#s1"><span class="tn">01</span> Positioning — what we are</a>
+      <a href="#s2"><span class="tn">02</span> The market insight</a>
+      <a href="#s3"><span class="tn">03</span> Offers</a>
+      <a href="#s4"><span class="tn">04</span> ICP profiles</a>
+      <a href="#s5"><span class="tn">05</span> How we deliver</a>
+      <a href="#s6"><span class="tn">06</span> Why speed wins</a>
+      <a href="#s7"><span class="tn">07</span> Open decisions</a>
+      <a href="#s8"><span class="tn">08</span> Next steps</a>
+    </div>
+  </div>
+
+  <!-- 01 POSITIONING -->
+  <div class="section" id="s1">
+    <div class="section-header"><span class="section-num">01</span><h2 class="section-title">Positioning — what we are</h2></div>
+    <div class="position-block">
+      <div class="position-label">One-liner</div>
+      <div class="position-statement">We build the <em>full acquisition machine</em> for high-ticket brands — from the first ad impression to the booked call or the sale.</div>
+      <p class="position-sub">Not a video shop. Not a "we run ads" agency. We own both ends of the funnel — the creative that gets attention and the system that converts it — and we use AI to do it faster and cheaper than a traditional agency can.</p>
+    </div>
+    <div class="twocol">
+      <div class="mini">
+        <div class="mini-label is">We are</div>
+        <ul>
+          <li>A productized AI/marketing agency: two clear "engines" + an automation upsell</li>
+          <li>Outcome sellers — sales and booked appointments, not "deliverables"</li>
+          <li>Owners of the whole funnel: creative → page/lead-catcher → backend</li>
+          <li>Fast: AI collapses creative cost and follow-up speed</li>
+        </ul>
+      </div>
+      <div class="mini">
+        <div class="mini-label not">We are not</div>
+        <ul>
+          <li>A one-off "make me a video" service</li>
+          <li>A generic "AI will transform your business" pitch</li>
+          <li>A retainer-for-vibes agency with no defined outcome</li>
+          <li>Trying to serve everyone — high-ticket only, two ICPs only</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 02 MARKET INSIGHT -->
+  <div class="section" id="s2">
+    <div class="section-header"><span class="section-num">02</span><h2 class="section-title">The market insight — two leaks</h2></div>
+    <p class="lead">It's almost never a traffic problem. High-ticket brands lose money in two predictable places. Our whole business is built on closing both — which is also why our two offers feel like one product line, not two random services.</p>
+    <div class="leak-grid">
+      <div class="leak-card">
+        <div class="leak-num">Leak 01 — before the click</div>
+        <div class="leak-name">The creative bottleneck</div>
+        <div class="leak-body">Paid traffic eats creative. To keep CPAs down you need <strong>fresh, scroll-stopping video constantly.</strong> A traditional agency charges thousands per ad and takes weeks, so clients run the same 3 tired ads until they fatigue.</div>
+      </div>
+      <div class="leak-card">
+        <div class="leak-num">Leak 02 — after the click</div>
+        <div class="leak-name">The lead leak</div>
+        <div class="leak-body">The lead comes in and then goes cold. Average follow-up across industries is <strong>40+ hours</strong>, and roughly a third of leads are never contacted at all. A faster competitor books the deal first.</div>
+      </div>
+    </div>
+    <div class="wedge"><strong>Our wedge:</strong> AI is the first thing that fixes <em>both</em> leaks at once — it collapses the cost of producing creative AND the cost of instant follow-up. We sit on both ends. That's the moat and the message.</div>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 03 OFFERS -->
+  <div class="section" id="s3">
+    <div class="section-header"><span class="section-num">03</span><h2 class="section-title">Offers</h2></div>
+    <p class="lead">Two engines run on the same AI creative. The difference is what happens after the click — selling a product or booking a call. Then one upsell once they're in.</p>
+
+    <!-- ENGINE 01 -->
+    <div class="offer">
+      <div class="offer-top">
+        <div><span class="offer-badge">Engine 01</span></div>
+        <span class="status live">Primary · validated direction</span>
+      </div>
+      <div class="offer-name">The Storefront Engine</div>
+      <div class="offer-for">For ecom stores &amp; coaches who sell direct (no call needed)</div>
+      <div class="offer-grid2">
+        <div>
+          <div class="field-label">What's included</div>
+          <ul class="offer-list">
+            <li><span class="t">→</span> AI video ads at volume (UGC / product / hook-driven)</li>
+            <li><span class="t">→</span> Media buying &amp; account management</li>
+            <li><span class="t">→</span> Conversion-built webshop / landing page</li>
+            <li><span class="t">→</span> Continuous creative testing loop</li>
+          </ul>
+        </div>
+        <div>
+          <div class="field-label">The promise</div>
+          <div class="field-body promise">Click → purchase, with no human in the loop. Lower CPA through constant fresh creative the client could never produce at this speed alone.</div>
+          <div class="field-label" style="margin-top:18px;">Deliverable</div>
+          <div class="field-body">A live ad account + a page built to convert, refreshed on a cadence.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENGINE 02 -->
+    <div class="offer">
+      <div class="offer-top">
+        <div><span class="offer-badge">Engine 02</span></div>
+        <span class="status val">In validation</span>
+      </div>
+      <div class="offer-name">The Booking Engine</div>
+      <div class="offer-for">For high-ticket service providers who close on appointments</div>
+      <div class="offer-grid2">
+        <div>
+          <div class="field-label">What's included</div>
+          <ul class="offer-list">
+            <li><span class="t">→</span> AI video ads at volume (tuned for lead-gen)</li>
+            <li><span class="t">→</span> AI lead-catcher: instant response to every form fill</li>
+            <li><span class="t">→</span> Qualification + routing to calendar</li>
+            <li><span class="t">→</span> Booked appointments handed to the client</li>
+          </ul>
+        </div>
+        <div>
+          <div class="field-label">The promise</div>
+          <div class="field-body promise">Booked, qualified appointments — not raw leads. Speed-to-lead stops being the bottleneck.</div>
+          <div class="field-label" style="margin-top:18px;">Status note</div>
+          <div class="field-body">Lead-catcher mechanics not concluded. See <strong>Open decisions (07)</strong> before selling this hard.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UPSELL -->
+    <div class="offer upsell">
+      <div class="offer-top">
+        <div><span class="offer-badge">Upsell</span></div>
+        <span class="status up">Existing clients only</span>
+      </div>
+      <div class="offer-name">Backend automations</div>
+      <div class="offer-for">Sold once the front-end is working and trust is built</div>
+      <div class="offer-grid2">
+        <div>
+          <div class="field-label">What's included</div>
+          <ul class="offer-list">
+            <li><span class="t">→</span> Follow-up &amp; nurture sequences</li>
+            <li><span class="t">→</span> CRM hygiene &amp; pipeline automation</li>
+            <li><span class="t">→</span> Client onboarding flows</li>
+            <li><span class="t">→</span> Reporting &amp; internal ops automation</li>
+          </ul>
+        </div>
+        <div>
+          <div class="field-label">Why it's an upsell, not a lead offer</div>
+          <div class="field-body">Hard to sell cold — needs trust and access to their systems. Easy to sell once we've already made them money. Higher margin, stickier retention.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 04 ICP -->
+  <div class="section" id="s4">
+    <div class="section-header"><span class="section-num">04</span><h2 class="section-title">ICP profiles</h2></div>
+    <p class="lead">So we both pitch the same person the same way. The common thread: <strong>high margin per sale</strong> — which is what makes a leaked impression or a cold lead actually expensive.</p>
+
+    <!-- ICP A -->
+    <div class="icp-card">
+      <span class="icp-tag a">Engine 01 buyer</span>
+      <div class="icp-name">Ecom stores &amp; coaches</div>
+      <div class="icp-role">Direct-to-buyer brands and program/course sellers</div>
+      <div class="icp-row"><div class="icp-rl">Pain (their words)</div><div class="icp-rv monologue">"My ads are stale, CPMs keep creeping up, and I can't shoot new creative fast enough to keep the account fresh. I'm scaling spend on tired ads."</div></div>
+      <div class="icp-row"><div class="icp-rl">Buying triggers</div><div class="icp-rv">Rising CPA · creative fatigue · launching a new product/offer · just got burned by a slow/expensive agency.</div></div>
+      <div class="icp-row"><div class="icp-rl">Where to find</div><div class="icp-rv">Shopify communities, ecom &amp; coaching groups, paid-traffic Twitter/X, their own ads (we can see who's running stale creative).</div></div>
+      <div class="icp-row"><div class="icp-rl">Primary objection</div><div class="icp-rv">"Will AI ads actually look good / convert?" → answer with sample creative for <strong>their</strong> brand, not explanation.</div></div>
+      <div class="icp-row"><div class="icp-rl">Good fit if</div><div class="icp-rv chips"><span>High-ticket DTC</span><span>Premium products</span><span>Online coaches</span><span>Course sellers</span><span>Already spending on ads</span></div></div>
+    </div>
+
+    <!-- ICP B -->
+    <div class="icp-card">
+      <span class="icp-tag b">Engine 02 buyer</span>
+      <div class="icp-name">High-ticket service providers</div>
+      <div class="icp-role">Businesses where the sale happens on a call / appointment</div>
+      <div class="icp-row"><div class="icp-rl">Pain (their words)</div><div class="icp-rv monologue">"Leads come in while I'm working. By the time I follow up, half have ghosted or already hired someone else. I'm losing deals I paid to generate."</div></div>
+      <div class="icp-row"><div class="icp-rl">Buying triggers</div><div class="icp-rv">Paying for leads that don't convert · missed calls/forms · solo or small team with no one to follow up fast · competitive local market.</div></div>
+      <div class="icp-row"><div class="icp-rl">Where to find</div><div class="icp-rv">Local service groups, industry-specific communities, lead-gen platform users (Angi, Google LSA, etc.), referrals from Engine 01 clients.</div></div>
+      <div class="icp-row"><div class="icp-rl">Primary objection</div><div class="icp-rv">"I tried a chatbot and it was terrible" / "my clients want a real person." → demo the actual experience + clarify it catches the leads they <strong>weren't getting to anyway.</strong></div></div>
+      <div class="icp-row"><div class="icp-rl">Good fit if</div><div class="icp-rv chips"><span>Consultants</span><span>Agencies</span><span>Med-spas / clinics</span><span>Home services</span><span>B2B sales teams</span><span>Appointment-based</span></div></div>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 05 DELIVERY -->
+  <div class="section" id="s5">
+    <div class="section-header"><span class="section-num">05</span><h2 class="section-title">How we deliver</h2></div>
+    <p class="lead">The actual machinery behind the offers, so we're aligned on fulfillment and what we're promising is real.</p>
+    <div class="deliver-grid">
+      <div class="deliver-card">
+        <div class="deliver-step">Creative engine</div>
+        <div class="deliver-title">Higgsfield (Marketing Studio)</div>
+        <div class="deliver-body">AI video ads from a <strong>product URL or prompt</strong> — UGC factory, AI avatars, hook generator, 9:16 / 16:9 / 1:1. We add the human layer: angle selection, hooks, and which creative to scale. Volume from AI, taste from us.</div>
+      </div>
+      <div class="deliver-card">
+        <div class="deliver-step">Conversion layer</div>
+        <div class="deliver-title">Page / webshop (Engine 01)</div>
+        <div class="deliver-body">Landing page or webshop built around the offer and products with a clean checkout. The thing the ad traffic actually lands on.</div>
+      </div>
+      <div class="deliver-card">
+        <div class="deliver-step">Conversion layer</div>
+        <div class="deliver-title">AI lead-catcher (Engine 02)</div>
+        <div class="deliver-body">Instant response to every form fill → qualify → book to calendar. <strong>Exact build still to define</strong> (channel, depth of qualification, handoff). See section 07.</div>
+      </div>
+      <div class="deliver-card">
+        <div class="deliver-step">Backend layer</div>
+        <div class="deliver-title">Automations (upsell)</div>
+        <div class="deliver-body">CRM, nurture sequences, onboarding and reporting wired together so the operation runs with less manual work once a client is established.</div>
+      </div>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 06 SPEED -->
+  <div class="section" id="s6">
+    <div class="section-header"><span class="section-num">06</span><h2 class="section-title">Why speed wins — the data behind Engine 02</h2></div>
+    <p class="lead">This is the proof that makes the Booking Engine an easy yes. Memorize these — they're the whole pitch.</p>
+    <div class="bar-row"><div class="bar-label">Reply &lt; 5 min</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-pct">100×</div></div>
+    <div class="bar-row"><div class="bar-label">Reply &lt; 30 min</div><div class="bar-track"><div class="bar-fill" style="width:48%"></div></div><div class="bar-pct">~21×</div></div>
+    <div class="bar-row"><div class="bar-label">Reply &lt; 1 hour</div><div class="bar-track"><div class="bar-fill" style="width:22%"></div></div><div class="bar-pct">7×</div></div>
+    <div class="bar-row"><div class="bar-label">Reply after 24h</div><div class="bar-track"><div class="bar-fill slow" style="width:6%"></div></div><div class="bar-pct slow">1×</div></div>
+    <div class="note"><strong>Reach a lead within 5 minutes</strong> and you're ~21× more likely to qualify it vs. waiting 30 minutes, and ~100× more likely to make contact at all. <strong>78% of buyers go with whoever responds first.</strong> Most businesses take 40+ hours.</div>
+    <div class="source">Source: Lead Response Management / Harvard Business Review study (Oldroyd et al.) — 2,200+ companies, 100,000+ leads. Bars show relative likelihood of qualifying by response window.</div>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 07 DECISIONS -->
+  <div class="section" id="s7">
+    <div class="section-header"><span class="section-num">07</span><h2 class="section-title">Open decisions — settle these</h2></div>
+    <p class="lead">The things we haven't concluded. Don't sell around these until we've decided.</p>
+    <div class="decision">
+      <div class="decision-q"><span class="marker">▸</span> Does the AI lead-catcher stay in the offer — and in what form?</div>
+      <div class="decision-body">Channel: SMS vs. voice AI vs. web chat? How deep does qualification go before a human takes over? Where's the handoff? A robotic or mistimed response can burn a high-ticket lead worse than a slow human — design the failure modes first.</div>
+    </div>
+    <div class="decision">
+      <div class="decision-q"><span class="marker">▸</span> Pricing &amp; packaging model</div>
+      <div class="decision-body">Setup fee + monthly retainer? Performance / per-booked-appointment? Per-engine pricing? Need a number we can both quote with confidence. [ fill ]</div>
+    </div>
+    <div class="decision">
+      <div class="decision-q"><span class="marker">▸</span> Fulfillment capacity</div>
+      <div class="decision-body">How many clients can we actually deliver for at once before quality drops? What's the cap before we hire or systematize harder? [ fill ]</div>
+    </div>
+    <div class="decision">
+      <div class="decision-q"><span class="marker">▸</span> Lead the funnel with one engine or both?</div>
+      <div class="decision-body">Engine 01 is more validated. Do we focus all outbound on it first and treat Engine 02 as a referral/expansion play, or run both from day one?</div>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 08 NEXT -->
+  <div class="section action-block" id="s8">
+    <div class="section-header"><span class="section-num">08</span><h2 class="section-title">Next steps &amp; ownership</h2></div>
+    <div class="next-grid">
+      <div class="next-card feature">
+        <div class="next-title">To build &amp; launch</div>
+        <div class="build-grid">
+          <div class="build-item">
+            <div class="bi-name">Socials</div>
+            <div class="bi-note">Set up brand accounts (IG, TikTok, X, LinkedIn) and start posting to build presence and proof.</div>
+          </div>
+          <div class="build-item">
+            <div class="bi-name">Visuals</div>
+            <div class="bi-note">Brand identity — logo, palette, fonts, and reusable templates for ads and content.</div>
+          </div>
+          <div class="build-item">
+            <div class="bi-name">Webpage</div>
+            <div class="bi-note">Build the public site / landing page so prospects can see what we do and reach us.</div>
+          </div>
+          <div class="build-item">
+            <div class="bi-name">Ad campaign</div>
+            <div class="bi-note">Launch the first paid campaign with a sample creative set to validate the engine.</div>
+          </div>
+        </div>
+      </div>
+      <div class="next-card">
+        <div class="next-title">Founder — [ name ]</div>
+        <ul>
+          <li>[ task ]</li>
+          <li>[ task ]</li>
+          <li>[ task ]</li>
+        </ul>
+      </div>
+      <div class="next-card">
+        <div class="next-title">Cofounder — [ name ]</div>
+        <ul>
+          <li>[ task ]</li>
+          <li>[ task ]</li>
+          <li>[ task ]</li>
+        </ul>
+      </div>
+      <div class="next-card">
+        <div class="next-title">This week — shared</div>
+        <ul>
+          <li>Lock Engine 02 lead-catcher decision</li>
+          <li>Agree pricing for Engine 01</li>
+          <li>Build 1 sample creative set for outreach</li>
+        </ul>
+      </div>
+      <div class="next-card">
+        <div class="next-title">Before first client</div>
+        <ul>
+          <li>Define onboarding steps</li>
+          <li>Pick the tools/stack for each engine</li>
+          <li>Write the core outreach message</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <div class="footer-brand">VYRA</div>
+    <div class="footer-note">Internal operating doc · founders only · v0.1</div>
+  </div>
+
+</div>
+</body>
+</html>
