@@ -1,41 +1,51 @@
 <!DOCTYPE html>
 <!--
-  INTERNAL OPERATING DOC — founder + cofounder source of truth.
-  Placeholder agency name: "VYRA" — swap for your real name everywhere.
-  Anything marked  ▸ DECIDE  or  [ fill ]  is for you two to settle.
+  DIAMANT — INTERNAL OPERATING DOC · FOUNDERS ONLY
+  Single source of truth: what we sell, to whom, how it's packaged, and what's still open.
+  Anything marked  ▸  or  [ fill ]  is for you two to settle.
+  Not a public landing page.
 -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VYRA — Operating Doc</title>
+<title>Diamant — Operating Doc</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --black:        #08080a;
-    --black-2:      #0d0d10;
-    --black-3:      #131318;
-    --black-4:      #1b1b22;
-    --black-5:      #25252e;
-    --purple-bright:#c9b3ff;
-    --purple:       #9d6bff;
-    --purple-mid:   #7c4dff;
-    --purple-dim:   #5d36c4;
-    --purple-muted: #361f6b;
-    --purple-ghost: #18112e;
-    --white:        #f4f3f8;
-    --white-dim:    #a6a3b2;
-    --white-ghost:  #56535f;
-    --amber:        #f0b955;
-    --red:          #e2607a;
-    --green:        #6ee0a0;
-    --border:        rgba(157,107,255,0.12);
-    --border-strong: rgba(157,107,255,0.26);
+    --black:        #070709;
+    --black-2:      #0c0c10;
+    --black-3:      #121218;
+    --black-4:      #1a1a22;
+    --black-5:      #25252f;
+
+    --purple:        #2F0696;   /* brand primary — deep */
+    --purple-mid:    #5b2fd6;
+    --purple-soft:   #8a64f0;
+    --purple-bright: #b6a0ff;   /* readable accent on dark */
+    --purple-light:  #cdb9ff;
+    --purple-muted:  #2a1a66;   /* badge fills */
+    --purple-ghost:  #140d2e;   /* tinted panel bg */
+
+    --lime:      #DDFF00;       /* accent text only — its own gradient, sparing */
+    --lime-soft: #b6e000;
+
+    --pink:      #ff5fa2;       /* secondary accent — select borders / words, sparing */
+    --pink-soft: #ff93c4;
+
+    --white:       #f4f3f8;
+    --white-dim:   #a4a2b2;
+    --white-ghost: #57555f;
+
+    --border:        rgba(139,100,240,0.13);
+    --border-strong: rgba(139,100,240,0.28);
+    --border-pink:   rgba(255,95,162,0.45);
   }
 
-  html { font-size: 16px; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+
   body {
     font-family: 'Inter', sans-serif;
     background: var(--black);
@@ -43,210 +53,249 @@
     line-height: 1.7;
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
-  }
-  ::selection { background: var(--purple-muted); color: var(--purple-bright); }
-
-  .page { max-width: 920px; margin: 0 auto; padding: 72px 48px 120px; }
-
-  /* HEADER */
-  .doc-header { border-bottom: 0.5px solid var(--border-strong); padding-bottom: 44px; margin-bottom: 64px; }
-  .doc-eyebrow {
-    font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--purple); margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
-  }
-  .doc-eyebrow::after { content:''; flex:1; height:0.5px; background: var(--border); max-width: 60px; }
-  .doc-title { font-size: clamp(34px, 5vw, 52px); font-weight: 800; line-height: 1.05; letter-spacing: -0.035em; margin-bottom: 18px; }
-  .doc-title span { background: linear-gradient(120deg, var(--purple-bright), var(--purple-mid)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-  .doc-subtitle { font-size: 15px; color: var(--white-dim); max-width: 560px; line-height: 1.7; }
-  .doc-meta { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap; }
-  .meta-pill { font-size: 11px; font-weight: 500; padding: 5px 14px; border: 0.5px solid var(--border-strong); border-radius: 20px; color: var(--white-dim); letter-spacing: 0.04em; }
-
-  /* TOC */
-  .toc { background: var(--black-3); border: 0.5px solid var(--border); border-radius: 14px; padding: 22px 26px; margin-bottom: 64px; }
-  .toc-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white-ghost); margin-bottom: 14px; }
-  .toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 28px; }
-  .toc-grid a { font-size: 13.5px; color: var(--white-dim); text-decoration: none; transition: color 0.18s; display: flex; gap: 10px; }
-  .toc-grid a:hover { color: var(--purple-bright); }
-  .toc-grid a .tn { color: var(--purple); font-weight: 600; font-size: 11px; padding-top: 2px; }
-
-  /* SECTIONS */
-  .section { margin-bottom: 76px; scroll-margin-top: 24px; }
-  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 32px; }
-  .section-num { font-size: 11px; font-weight: 600; color: var(--purple-dim); letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; padding-top: 2px; }
-  .section-title { font-size: 24px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.2; }
-  .section-divider { height: 0.5px; background: var(--border); margin-bottom: 76px; }
-
-  p.lead { font-size: 15px; color: var(--white-dim); line-height: 1.75; margin-bottom: 22px; }
-  p.lead strong { color: var(--white); font-weight: 600; }
-
-  /* POSITIONING */
-  .position-block { background: var(--black-3); border: 0.5px solid var(--border-strong); border-radius: 16px; padding: 38px 42px; position: relative; overflow: hidden; }
-  .position-block::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background: linear-gradient(90deg, transparent, var(--purple), transparent); }
-  .position-label { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--purple-dim); margin-bottom: 16px; }
-  .position-statement { font-size: clamp(19px, 3vw, 26px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.35; margin-bottom: 18px; }
-  .position-statement em { font-style: normal; color: var(--purple-bright); }
-  .position-sub { font-size: 14px; color: var(--white-dim); line-height: 1.7; max-width: 600px; }
-
-  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
-  .mini { background: var(--black-3); border: 0.5px solid var(--border); border-radius: 12px; padding: 24px 26px; }
-  .mini-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
-  .mini-label.is { color: var(--green); }
-  .mini-label.not { color: var(--red); }
-  .mini ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .mini li { font-size: 13.5px; color: var(--white-dim); line-height: 1.5; padding-left: 18px; position: relative; }
-  .mini li::before { content: '—'; position: absolute; left: 0; color: var(--white-ghost); }
-
-  /* LEAKS */
-  .leak-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .leak-card { background: var(--black-3); border: 0.5px solid rgba(226,96,122,0.22); border-radius: 14px; padding: 28px 30px; }
-  .leak-num { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 12px; }
-  .leak-name { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; }
-  .leak-body { font-size: 13.5px; color: var(--white-dim); line-height: 1.7; }
-  .leak-body strong { color: var(--white); font-weight: 600; }
-  .wedge { margin-top: 22px; background: var(--purple-ghost); border: 0.5px solid var(--border-strong); border-radius: 12px; padding: 22px 26px; font-size: 14px; color: var(--white-dim); line-height: 1.7; }
-  .wedge strong { color: var(--purple-bright); font-weight: 600; }
-
-  /* OFFERS */
-  .offer { background: var(--black-3); border: 0.5px solid var(--border); border-radius: 16px; padding: 32px 34px; margin-bottom: 16px; position: relative; overflow: hidden; }
-  .offer::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background: linear-gradient(90deg, transparent, var(--purple), transparent); opacity: 0.55; }
-  .offer.upsell { border-style: dashed; }
-  .offer-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 6px; }
-  .offer-badge { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple-bright); background: var(--purple-muted); padding: 4px 11px; border-radius: 20px; margin-bottom: 14px; }
-  .status { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 11px; border-radius: 20px; white-space: nowrap; }
-  .status.live { background: rgba(110,224,160,0.14); color: var(--green); }
-  .status.val { background: rgba(240,185,85,0.14); color: var(--amber); }
-  .status.up { background: rgba(157,107,255,0.14); color: var(--purple-bright); }
-  .offer-name { font-size: 21px; font-weight: 700; letter-spacing: -0.025em; margin-bottom: 6px; }
-  .offer-for { font-size: 13px; font-weight: 500; color: var(--purple); margin-bottom: 18px; }
-  .offer-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 32px; margin-top: 6px; }
-  .field-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white-ghost); margin-bottom: 8px; }
-  .field-body { font-size: 13.5px; color: var(--white-dim); line-height: 1.6; }
-  .offer-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-  .offer-list li { font-size: 13.5px; color: var(--white); display: flex; gap: 10px; line-height: 1.45; }
-  .offer-list li .t { color: var(--purple-bright); flex-shrink: 0; }
-  .promise { font-size: 13.5px; color: var(--purple-bright); font-weight: 500; }
-
-  /* ICP */
-  .icp-card { background: var(--black-3); border: 0.5px solid var(--border); border-radius: 16px; padding: 32px 34px; margin-bottom: 16px; }
-  .icp-tag { display:inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 11px; border-radius: 20px; margin-bottom: 14px; }
-  .icp-tag.a { background: rgba(157,107,255,0.16); color: var(--purple-bright); }
-  .icp-tag.b { background: rgba(124,77,255,0.16); color: #b9a0ff; }
-  .icp-name { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; }
-  .icp-role { font-size: 13px; color: var(--white-dim); margin-bottom: 22px; }
-  .icp-row { display: grid; grid-template-columns: 150px 1fr; gap: 20px; padding: 16px 0; border-top: 0.5px solid var(--border); }
-  .icp-row:first-of-type { border-top: none; padding-top: 0; }
-  .icp-rl { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white-ghost); padding-top: 2px; }
-  .icp-rv { font-size: 13.5px; color: var(--white-dim); line-height: 1.6; }
-  .icp-rv strong { color: var(--white); font-weight: 600; }
-  .monologue { font-style: italic; border-left: 2px solid var(--purple-muted); padding-left: 14px; color: var(--white-dim); }
-  .chips { display: flex; flex-wrap: wrap; gap: 7px; }
-  .chips span { font-size: 12px; color: var(--white); background: var(--black-5); padding: 4px 11px; border-radius: 20px; }
-
-  /* DELIVERY */
-  .deliver-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .deliver-card { background: var(--black-3); border: 0.5px solid var(--border); border-radius: 12px; padding: 26px 28px; }
-  .deliver-step { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--purple); margin-bottom: 10px; }
-  .deliver-title { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 10px; }
-  .deliver-body { font-size: 13.5px; color: var(--white-dim); line-height: 1.65; }
-  .deliver-body strong { color: var(--white); font-weight: 600; }
-
-  /* SPEED BARS */
-  .bar-row { display: grid; grid-template-columns: 150px 1fr 60px; gap: 16px; align-items: center; margin-bottom: 16px; }
-  .bar-label { font-size: 13px; color: var(--white-dim); }
-  .bar-track { height: 7px; background: var(--black-5); border-radius: 4px; overflow: hidden; }
-  .bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--purple-dim), var(--purple)); }
-  .bar-fill.slow { background: linear-gradient(90deg, #5a2030, var(--red)); }
-  .bar-pct { font-size: 13px; font-weight: 700; color: var(--purple-bright); text-align: right; }
-  .bar-pct.slow { color: var(--red); }
-  .note { font-size: 13.5px; color: var(--white-dim); line-height: 1.7; padding: 20px 24px; background: var(--black-3); border-radius: 10px; border-left: 2px solid var(--purple-dim); margin-top: 24px; }
-  .note strong { color: var(--purple-bright); }
-  .source { font-size: 11px; color: var(--white-ghost); margin-top: 12px; }
-
-  /* DECISIONS */
-  .decision { background: var(--black-3); border: 0.5px solid rgba(240,185,85,0.25); border-radius: 12px; padding: 22px 26px; margin-bottom: 12px; }
-  .decision-q { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 8px; display: flex; gap: 10px; }
-  .decision-q .marker { color: var(--amber); flex-shrink: 0; font-weight: 700; }
-  .decision-body { font-size: 13.5px; color: var(--white-dim); line-height: 1.65; padding-left: 24px; }
-
-  /* NEXT */
-  .next-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .next-card { background: var(--black-3); border: 0.5px solid var(--border); border-radius: 12px; padding: 24px 26px; }
-  .next-title { font-size: 14px; font-weight: 700; margin-bottom: 14px; color: var(--purple-bright); }
-  .next-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .next-card li { font-size: 13.5px; color: var(--white-dim); line-height: 1.5; padding-left: 24px; position: relative; }
-  .next-card li::before { content: '☐'; position: absolute; left: 0; color: var(--white-ghost); }
-
-  /* highlighted / standout section */
-  .section.action-block {
-    background: linear-gradient(160deg, var(--purple-ghost), var(--black-3));
-    border: 0.5px solid var(--border-strong);
-    border-radius: 18px;
-    padding: 42px 44px;
     position: relative;
-    overflow: hidden;
   }
-  .section.action-block::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--purple), transparent);
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -240px; left: 50%; transform: translateX(-50%);
+    width: 900px; height: 600px;
+    background: radial-gradient(ellipse at center, rgba(47,6,150,0.42), transparent 65%);
+    pointer-events: none; z-index: 0;
   }
-  .section.action-block .next-card { background: var(--black-2); border-color: var(--border-strong); }
 
-  .next-card.feature { grid-column: 1 / -1; padding: 28px 30px; }
-  .build-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-top: 4px; }
-  .build-item { background: rgba(8,8,10,0.55); border: 0.5px solid var(--border); border-radius: 10px; padding: 18px 18px; }
-  .bi-name { font-size: 14px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; display: flex; align-items: center; gap: 9px; }
-  .bi-name::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--purple); box-shadow: 0 0 9px var(--purple); flex-shrink: 0; }
-  .bi-note { font-size: 12.5px; color: var(--white-dim); line-height: 1.55; }
+  ::selection { background: var(--purple-muted); color: var(--lime); }
 
-  /* FOOTER */
-  .doc-footer { border-top: 0.5px solid var(--border); padding-top: 32px; margin-top: 88px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .page { max-width: 920px; margin: 0 auto; padding: 76px 48px 130px; position: relative; z-index: 1; }
+
+  .lime-grad {
+    background: linear-gradient(100deg, var(--lime), var(--lime-soft));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+  }
+
+  /* ============== HEADER ============== */
+  .doc-header { border-bottom: 0.5px solid var(--border-strong); padding-bottom: 46px; margin-bottom: 70px; }
+  .doc-eyebrow {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--purple-bright); margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+  }
+  .doc-eyebrow::after { content:''; flex:1; height:0.5px; background: var(--border); max-width: 70px; }
+
+  .brand-lockup { display: flex; align-items: center; gap: 18px; margin-bottom: 22px; }
+  .gem { width: 38px; height: 38px; flex-shrink: 0; filter: drop-shadow(0 0 14px rgba(139,100,240,0.5)); }
+  .doc-title { font-size: clamp(40px, 6vw, 62px); font-weight: 800; line-height: 1; letter-spacing: -0.04em; }
+  .doc-title .mark {
+    background: linear-gradient(120deg, var(--purple-light), var(--purple-soft));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .doc-tagline { font-size: clamp(17px, 2.4vw, 22px); font-weight: 600; letter-spacing: -0.02em; color: var(--white); margin-bottom: 18px; }
+  .doc-subtitle { font-size: 15px; color: var(--white-dim); max-width: 560px; line-height: 1.75; }
+  .doc-meta { margin-top: 30px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .meta-pill {
+    font-size: 11px; font-weight: 500; padding: 6px 14px; border: 0.5px solid var(--border-strong);
+    border-radius: 30px; color: var(--white-dim); letter-spacing: 0.03em;
+  }
+  .meta-pill.accent { color: var(--purple-bright); border-color: var(--border-strong); }
+
+  /* ============== SECTIONS ============== */
+  .section { margin-bottom: 78px; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 34px; }
+  .section-num {
+    font-size: 11px; font-weight: 700; color: var(--purple-bright);
+    letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; padding-top: 3px;
+  }
+  .section-title { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+  .section-intro { font-size: 14px; color: var(--white-dim); line-height: 1.75; max-width: 640px; margin: -14px 0 30px; }
+  .section-divider { height: 0.5px; background: var(--border); margin-bottom: 78px; }
+
+  /* ============== POSITIONING ============== */
+  .positioning-block {
+    background: linear-gradient(150deg, var(--purple-ghost), var(--black-3));
+    border: 0.5px solid var(--border-strong); border-radius: 18px;
+    padding: 44px 46px; position: relative; overflow: hidden;
+  }
+  .positioning-block::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:1px;
+    background: linear-gradient(90deg, transparent, var(--purple-soft), transparent);
+  }
+  .positioning-label { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--purple-bright); margin-bottom: 18px; }
+  .positioning-statement { font-size: clamp(21px, 3vw, 30px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.32; margin-bottom: 22px; }
+  .positioning-statement .pp { color: var(--purple-bright); }
+  .positioning-sub { font-size: 14px; color: var(--white-dim); line-height: 1.75; max-width: 600px; }
+  .positioning-sub strong { color: var(--white); font-weight: 600; }
+
+  /* ============== BRAND SYSTEM ============== */
+  .brand-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 16px; }
+  @media (max-width: 760px) { .brand-grid { grid-template-columns: 1fr; } }
+  .brand-card { background: var(--black-3); border: 0.5px solid var(--border); border-radius: 14px; padding: 26px 28px; }
+  .brand-card-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white-ghost); margin-bottom: 18px; }
+  .swatches { display: flex; flex-direction: column; gap: 10px; }
+  .swatch { display: flex; align-items: center; gap: 14px; }
+  .swatch-chip { width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0; border: 0.5px solid rgba(255,255,255,0.08); }
+  .swatch-meta { display: flex; flex-direction: column; gap: 1px; }
+  .swatch-name { font-size: 13px; font-weight: 600; }
+  .swatch-hex { font-size: 11px; color: var(--white-dim); letter-spacing: 0.04em; }
+  .swatch-role { font-size: 11px; color: var(--white-ghost); }
+
+  .type-row { margin-bottom: 22px; }
+  .type-row:last-child { margin-bottom: 0; }
+  .type-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-ghost); margin-bottom: 8px; }
+  .type-sample-1 { font-size: 30px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; }
+  .type-sample-2 { font-size: 15px; font-weight: 400; color: var(--white-dim); }
+  .type-name { font-size: 12px; color: var(--purple-bright); font-weight: 600; margin-top: 6px; }
+
+  /* ============== OFFERS ============== */
+  .offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  @media (max-width: 760px) { .offer-grid { grid-template-columns: 1fr; } }
+  .offer-card {
+    background: var(--black-3); border: 0.5px solid var(--border); border-radius: 14px;
+    padding: 28px 24px; position: relative; transition: border-color 0.25s, transform 0.25s;
+  }
+  .offer-card:hover { border-color: var(--border-strong); transform: translateY(-3px); }
+  .offer-badge {
+    display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--purple-bright); background: var(--purple-muted); padding: 4px 11px; border-radius: 20px; margin-bottom: 16px;
+  }
+  .offer-name { font-size: 19px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px; }
+  .offer-outcome { font-size: 12.5px; font-weight: 600; color: var(--purple-bright); margin-bottom: 16px; }
+  .offer-line { font-size: 12px; color: var(--white-dim); line-height: 1.6; margin-bottom: 14px; }
+  .offer-meta-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white-ghost); margin-bottom: 5px; }
+  .offer-meta-val { font-size: 12px; color: var(--white); line-height: 1.55; margin-bottom: 12px; }
+  .offer-meta-val:last-child { margin-bottom: 0; }
+  .offer-meta-val .muted { color: var(--white-dim); }
+
+  /* ============== ICP ============== */
+  .icp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 760px) { .icp-grid { grid-template-columns: 1fr; } }
+  .icp-card { background: var(--black-3); border: 0.5px solid var(--border); border-radius: 14px; padding: 26px 28px; }
+  .icp-card.span2 { grid-column: 1 / -1; }
+  .icp-tag {
+    display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 4px 11px; border-radius: 20px; margin-bottom: 14px;
+    background: var(--purple-muted); color: var(--purple-bright);
+  }
+  .icp-name { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 4px; }
+  .icp-role { font-size: 12px; color: var(--white-dim); margin-bottom: 18px; }
+  .icp-body { font-size: 13px; color: var(--white-dim); line-height: 1.7; }
+  .icp-body strong { color: var(--white); font-weight: 600; }
+  .icp-body em { color: var(--purple-bright); font-style: normal; }
+  .icp-list { list-style: none; margin-top: 10px; display: flex; flex-direction: column; gap: 7px; }
+  .icp-list li { font-size: 12.5px; color: var(--white-dim); line-height: 1.5; padding-left: 18px; position: relative; }
+  .icp-list li::before { content:'◇'; position:absolute; left:0; color: var(--purple-soft); font-size: 10px; top: 2px; }
+  .flag {
+    margin-top: 16px; font-size: 12px; color: var(--white-dim); line-height: 1.6;
+    padding: 12px 16px; background: rgba(139,100,240,0.08); border-left: 2px solid var(--purple-soft); border-radius: 8px;
+  }
+  .flag strong { color: var(--purple-bright); font-weight: 600; }
+
+  /* ============== TIERS ============== */
+  .tier-system-note {
+    font-size: 13.5px; color: var(--white-dim); line-height: 1.75; margin-bottom: 26px;
+    padding: 18px 22px; background: var(--black-3); border-radius: 10px; border-left: 2px solid var(--purple-soft);
+  }
+  .tier-system-note strong { color: var(--white); font-weight: 600; }
+  .tier-system-note em { color: var(--purple-bright); font-style: normal; }
+  .tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  @media (max-width: 760px) { .tier-grid { grid-template-columns: 1fr; } }
+  .tier-card { background: var(--black-3); border: 0.5px solid var(--border); border-radius: 14px; padding: 26px 24px; position: relative; overflow: hidden; }
+  .tier-card.flagship { border-color: var(--border-pink); background: linear-gradient(170deg, rgba(47,6,150,0.26), var(--black-3)); }
+  .tier-card.flagship::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:1px;
+    background: linear-gradient(90deg, transparent, var(--purple-soft), transparent);
+  }
+  .tier-stone { display: flex; align-items: center; gap: 9px; margin-bottom: 4px; }
+  .tier-dot { width: 11px; height: 11px; border-radius: 2px; transform: rotate(45deg); }
+  .tier-name { font-size: 18px; font-weight: 800; letter-spacing: -0.02em; }
+  .tier-level { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-ghost); margin-bottom: 16px; }
+  .tier-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .tier-list li { font-size: 12.5px; color: var(--white-dim); line-height: 1.5; padding-left: 18px; position: relative; }
+  .tier-list li::before { content:'+'; position:absolute; left:0; color: var(--purple-soft); font-weight: 700; }
+  .tier-list li.base::before { content:'●'; color: var(--white-ghost); font-size: 8px; top: 4px; }
+  .tier-list li strong { color: var(--white); font-weight: 600; }
+  .tier-list li em { color: var(--purple-bright); font-style: normal; }
+  .tier-price { font-size: 11px; color: var(--white-ghost); margin-top: 16px; padding-top: 14px; border-top: 0.5px solid var(--border); }
+  .tier-price b { color: var(--purple-bright); }
+
+  .blackdiamond {
+    margin-top: 14px; background: linear-gradient(120deg, #0a0a0c, #15101f);
+    border: 0.5px solid var(--border-strong); border-radius: 14px; padding: 22px 26px;
+    display: flex; gap: 18px; align-items: center; flex-wrap: wrap;
+  }
+  .bd-dot { width: 14px; height: 14px; border-radius: 2px; transform: rotate(45deg); background: linear-gradient(135deg, #2b2b33, #06060a); border: 0.5px solid var(--purple-soft); flex-shrink: 0; }
+  .bd-text { font-size: 13px; color: var(--white-dim); line-height: 1.65; flex: 1; min-width: 240px; }
+  .bd-text strong { color: var(--white); font-weight: 700; }
+  .bd-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple-bright); border: 0.5px solid var(--border-strong); padding: 5px 12px; border-radius: 20px; }
+
+  /* ============== ADD-ONS ============== */
+  .addon-list { display: flex; flex-direction: column; gap: 10px; }
+  .addon-row {
+    display: grid; grid-template-columns: 190px 1fr auto; gap: 18px; align-items: center;
+    background: var(--black-3); border: 0.5px solid var(--border); border-radius: 11px; padding: 18px 22px;
+  }
+  @media (max-width: 760px) { .addon-row { grid-template-columns: 1fr; gap: 6px; } }
+  .addon-name { font-size: 14px; font-weight: 700; }
+  .addon-desc { font-size: 12.5px; color: var(--white-dim); line-height: 1.55; }
+  .addon-tier { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; padding: 5px 12px; border-radius: 20px; }
+  .addon-tier.sapphire { background: var(--purple-muted); color: var(--purple-bright); }
+  .addon-tier.diamond { background: rgba(221,255,0,0.12); color: var(--lime); }
+  .addon-tier.native { background: rgba(255,95,162,0.12); color: var(--pink); }
+
+  /* ============== ROLES ============== */
+  .role-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+  @media (max-width: 760px) { .role-grid { grid-template-columns: 1fr; } }
+  .role-card { background: var(--black-3); border: 0.5px solid var(--border); border-radius: 12px; padding: 22px 24px; }
+  .role-engine { font-size: 13px; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 6px; }
+  .role-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--purple-bright); margin-bottom: 12px; }
+  .role-desc { font-size: 12.5px; color: var(--white-dim); line-height: 1.6; }
+
+  /* ============== BOTTLENECKS ============== */
+  .bottleneck-list { display: flex; flex-direction: column; gap: 12px; }
+  .bottleneck { background: var(--black-3); border: 0.5px solid var(--border); border-radius: 12px; padding: 22px 26px; }
+  .bottleneck-head { display: flex; gap: 12px; align-items: baseline; margin-bottom: 8px; }
+  .bottleneck-num { font-size: 11px; font-weight: 700; color: var(--pink); letter-spacing: 0.08em; white-space: nowrap; }
+  .bottleneck-title { font-size: 14.5px; font-weight: 700; letter-spacing: -0.01em; }
+  .bottleneck-body { font-size: 13px; color: var(--white-dim); line-height: 1.65; }
+  .bottleneck-move { font-size: 13px; color: var(--white); line-height: 1.6; margin-top: 10px; padding: 12px 16px; background: rgba(139,100,240,0.08); border-radius: 8px; }
+  .bottleneck-move b { color: var(--purple-bright); font-weight: 600; }
+
+  /* ============== DECISIONS ============== */
+  .decision { background: var(--black-3); border: 0.5px solid var(--border-pink); border-radius: 12px; padding: 20px 26px; margin-bottom: 11px; }
+  .decision-q { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 7px; display: flex; gap: 10px; }
+  .decision-q .marker { color: var(--pink); flex-shrink: 0; font-weight: 700; }
+  .decision-body { font-size: 13px; color: var(--white-dim); line-height: 1.65; padding-left: 25px; }
+  .decision-body .note { color: var(--purple-bright); font-weight: 600; }
+
+  /* ============== NEXT ============== */
+  .action-block { background: linear-gradient(160deg, var(--purple-ghost), var(--black-2)); border: 0.5px solid var(--border-strong); border-radius: 18px; padding: 40px 40px 36px; position: relative; overflow: hidden; }
+  .action-block::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background: linear-gradient(90deg, transparent, var(--purple-soft), transparent); }
+  .next-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 760px) { .next-grid { grid-template-columns: 1fr; } }
+  .next-card { background: var(--black-3); border: 0.5px solid var(--border); border-radius: 12px; padding: 22px 24px; }
+  .next-card.wide { grid-column: 1 / -1; }
+  .next-title { font-size: 13px; font-weight: 700; margin-bottom: 14px; color: var(--purple-bright); }
+  .next-card ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .next-card li { font-size: 13px; color: var(--white-dim); line-height: 1.5; padding-left: 24px; position: relative; }
+  .next-card li::before { content:'☐'; position:absolute; left:0; color: var(--white-ghost); }
+
+  /* ============== FOOTER ============== */
+  .doc-footer { border-top: 0.5px solid var(--border); padding-top: 30px; margin-top: 90px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
   .footer-brand { font-size: 16px; font-weight: 800; letter-spacing: -0.03em; }
+  .footer-brand .mark { background: linear-gradient(100deg, var(--purple-bright), var(--pink)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
   .footer-note { font-size: 12px; color: var(--white-ghost); }
 
-  /* tablet / small laptop */
-  @media (max-width: 720px) {
-    .page { padding: 52px 22px 80px; }
-    .twocol, .leak-grid, .offer-grid2, .deliver-grid, .next-grid, .toc-grid { grid-template-columns: 1fr; }
-    .icp-row { grid-template-columns: 1fr; gap: 6px; }
-    .bar-row { grid-template-columns: 96px 1fr 46px; gap: 12px; }
-    .section { margin-bottom: 58px; }
-    .section-divider { margin-bottom: 58px; }
-    .position-block { padding: 30px 26px; }
-    .offer, .icp-card { padding: 26px 24px; }
-    .next-card.feature { padding: 22px 22px; }
-    .section.action-block { padding: 26px 20px; }
-    .offer-top { gap: 10px; }
-    .doc-header { margin-bottom: 52px; }
-  }
+  /* ============== REVEAL ============== */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  .doc-header > * { opacity: 0; transform: translateY(18px); animation: rise 0.7s forwards; }
+  .doc-eyebrow { animation-delay: 0.05s; }
+  .brand-lockup { animation-delay: 0.16s; }
+  .doc-tagline { animation-delay: 0.28s; }
+  .doc-subtitle { animation-delay: 0.4s; }
+  .doc-meta { animation-delay: 0.52s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
 
-  /* phones */
-  @media (max-width: 480px) {
-    .page { padding: 44px 16px 72px; }
-    .doc-header { padding-bottom: 32px; margin-bottom: 44px; }
-    .doc-title { font-size: 30px; line-height: 1.1; }
-    .doc-subtitle { font-size: 14px; }
-    .doc-meta { gap: 8px; }
-    .meta-pill { font-size: 10px; padding: 4px 11px; }
-    .toc { padding: 18px 18px; margin-bottom: 48px; }
-    .section { margin-bottom: 48px; }
-    .section-divider { margin-bottom: 48px; }
-    .section-header { gap: 12px; margin-bottom: 24px; }
-    .section-title { font-size: 20px; }
-    .section-num { font-size: 10px; }
-    p.lead { font-size: 14px; }
-    .position-statement { font-size: 19px; }
-    .position-block { padding: 26px 20px; }
-    .offer, .icp-card { padding: 22px 18px; }
-    .offer-name { font-size: 19px; }
-    .icp-name { font-size: 18px; }
-    .deliver-card { padding: 22px 20px; }
-    .note { padding: 18px 18px; }
-    .build-item { padding: 16px 16px; }
-    .section.action-block { padding: 24px 16px; }
-    .bar-row { grid-template-columns: 80px 1fr 42px; gap: 10px; }
-    .bar-label { font-size: 12px; }
-    .doc-footer { flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 60px; }
-  }
+  @media (max-width: 720px) { .page { padding: 56px 22px 90px; } }
 </style>
 </head>
 <body>
@@ -255,319 +304,351 @@
   <!-- HEADER -->
   <div class="doc-header">
     <div class="doc-eyebrow">Internal Operating Doc · Founders Only</div>
-    <h1 class="doc-title"><span>VYRA</span> — what we sell, to whom, and how.</h1>
-    <p class="doc-subtitle">The single source of truth for the agency. Positioning, offers, ICP and delivery in one place so we both sell the same thing the same way. Living document — update it instead of arguing in DMs.</p>
-    <div class="doc-meta">
-      <span class="meta-pill">AI / Marketing agency</span>
-      <span class="meta-pill">High-ticket clients</span>
-      <span class="meta-pill">v0.1 — draft</span>
-      <span class="meta-pill">Owner: [ founder ] + [ cofounder ]</span>
+    <div class="brand-lockup">
+      <svg class="gem" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M25 12h50l18 24-43 52L7 36z" stroke="#b6a0ff" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M7 36h86M25 12 37 36l13 52M75 12 63 36 50 88M37 36h26" stroke="#8a64f0" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M50 36 37 36l13-24 13 24z" fill="#8a64f0" fill-opacity="0.22"/>
+      </svg>
+      <h1 class="doc-title"><span class="mark">Diamant</span></h1>
     </div>
-  </div>
-
-  <!-- TOC -->
-  <div class="toc">
-    <div class="toc-label">Contents</div>
-    <div class="toc-grid">
-      <a href="#s1"><span class="tn">01</span> Positioning — what we are</a>
-      <a href="#s2"><span class="tn">02</span> The market insight</a>
-      <a href="#s3"><span class="tn">03</span> Offers</a>
-      <a href="#s4"><span class="tn">04</span> ICP profiles</a>
-      <a href="#s5"><span class="tn">05</span> How we deliver</a>
-      <a href="#s6"><span class="tn">06</span> Why speed wins</a>
-      <a href="#s7"><span class="tn">07</span> Open decisions</a>
-      <a href="#s8"><span class="tn">08</span> Next steps</a>
+    <div class="doc-tagline">What we sell, to whom, and how it's packaged.</div>
+    <p class="doc-subtitle">The single source of truth for the agency. Positioning, offers, ICPs, packaging and the open decisions — in one place so we both sell the same thing, the same way.</p>
+    <div class="doc-meta">
+      <span class="meta-pill accent">Marketing + AI Agency</span>
+      <span class="meta-pill">Founders — [ name ] + [ name ]</span>
+      <span class="meta-pill">v0.2 · working draft</span>
     </div>
   </div>
 
   <!-- 01 POSITIONING -->
-  <div class="section" id="s1">
-    <div class="section-header"><span class="section-num">01</span><h2 class="section-title">Positioning — what we are</h2></div>
-    <div class="position-block">
-      <div class="position-label">One-liner</div>
-      <div class="position-statement">We build the <em>full acquisition machine</em> for high-ticket brands — from the first ad impression to the booked call or the sale.</div>
-      <p class="position-sub">Not a video shop. Not a "we run ads" agency. We own both ends of the funnel — the creative that gets attention and the system that converts it — and we use AI to do it faster and cheaper than a traditional agency can.</p>
-    </div>
-    <div class="twocol">
-      <div class="mini">
-        <div class="mini-label is">We are</div>
-        <ul>
-          <li>A productized AI/marketing agency: two clear "engines" + an automation upsell</li>
-          <li>Outcome sellers — sales and booked appointments, not "deliverables"</li>
-          <li>Owners of the whole funnel: creative → page/lead-catcher → backend</li>
-          <li>Fast: AI collapses creative cost and follow-up speed</li>
-        </ul>
-      </div>
-      <div class="mini">
-        <div class="mini-label not">We are not</div>
-        <ul>
-          <li>A one-off "make me a video" service</li>
-          <li>A generic "AI will transform your business" pitch</li>
-          <li>A retainer-for-vibes agency with no defined outcome</li>
-          <li>Trying to serve everyone — high-ticket only, two ICPs only</li>
-        </ul>
-      </div>
+  <div class="section reveal">
+    <div class="section-header"><span class="section-num">01</span><h2 class="section-title">Positioning</h2></div>
+    <div class="positioning-block">
+      <div class="positioning-label">What Diamant is</div>
+      <div class="positioning-statement">A <span class="pp">marketing + AI agency</span> that builds the whole engine — <span class="lime-grad">creative, funnel, and the system that turns attention into revenue</span> — for businesses that want premium done properly.</div>
+      <p class="positioning-sub"><strong>The diamond standard:</strong> high-value, exclusive, clean. We don't sell tools or tactics — we sell outcomes (sales, enrollments, booked appointments) and own the machine that produces them. One delivery engine, pointed at three markets, packaged as a clear value ladder. <em style="color:var(--white-ghost);font-style:normal;">(Tighten this statement together — see next steps.)</em></p>
     </div>
   </div>
   <div class="section-divider"></div>
 
-  <!-- 02 MARKET INSIGHT -->
-  <div class="section" id="s2">
-    <div class="section-header"><span class="section-num">02</span><h2 class="section-title">The market insight — two leaks</h2></div>
-    <p class="lead">It's almost never a traffic problem. High-ticket brands lose money in two predictable places. Our whole business is built on closing both — which is also why our two offers feel like one product line, not two random services.</p>
-    <div class="leak-grid">
-      <div class="leak-card">
-        <div class="leak-num">Leak 01 — before the click</div>
-        <div class="leak-name">The creative bottleneck</div>
-        <div class="leak-body">Paid traffic eats creative. To keep CPAs down you need <strong>fresh, scroll-stopping video constantly.</strong> A traditional agency charges thousands per ad and takes weeks, so clients run the same 3 tired ads until they fatigue.</div>
+  <!-- 02 BRAND SYSTEM -->
+  <div class="section reveal">
+    <div class="section-header"><span class="section-num">02</span><h2 class="section-title">Brand system</h2></div>
+    <div class="brand-grid">
+      <div class="brand-card">
+        <div class="brand-card-label">Color palette — kept tight</div>
+        <div class="swatches">
+          <div class="swatch">
+            <div class="swatch-chip" style="background:#2F0696;"></div>
+            <div class="swatch-meta"><div class="swatch-name">Purple — Primary</div><div class="swatch-hex">#2F0696</div><div class="swatch-role">Brand core · all gradients · dominant accent</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-chip" style="background:#b6a0ff;"></div>
+            <div class="swatch-meta"><div class="swatch-name">Purple — Bright</div><div class="swatch-hex">#B6A0FF</div><div class="swatch-role">Readable accent text on dark</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-chip" style="background:#ff5fa2;"></div>
+            <div class="swatch-meta"><div class="swatch-name">Pink — Secondary</div><div class="swatch-hex">#FF5FA2</div><div class="swatch-role">Select borders / words only · sparing</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-chip" style="background:#DDFF00;"></div>
+            <div class="swatch-meta"><div class="swatch-name">Lime — Spark</div><div class="swatch-hex">#DDFF00</div><div class="swatch-role">Accent text in its own gradient · rare</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-chip" style="background:#25252f;"></div>
+            <div class="swatch-meta"><div class="swatch-name">Dark grey / Black</div><div class="swatch-hex">#25252F · #070709</div><div class="swatch-role">Surfaces · depth · base canvas</div></div>
+          </div>
+        </div>
       </div>
-      <div class="leak-card">
-        <div class="leak-num">Leak 02 — after the click</div>
-        <div class="leak-name">The lead leak</div>
-        <div class="leak-body">The lead comes in and then goes cold. Average follow-up across industries is <strong>40+ hours</strong>, and roughly a third of leads are never contacted at all. A faster competitor books the deal first.</div>
+      <div class="brand-card">
+        <div class="brand-card-label">Typography</div>
+        <div class="type-row">
+          <div class="type-eyebrow">Primary</div>
+          <div class="type-sample-1">Inter</div>
+          <div class="type-name">Inter — all variants (300–900)</div>
+        </div>
+        <div class="type-row">
+          <div class="type-eyebrow">Secondary</div>
+          <div class="type-sample-2">Helvetica / Grotesk — clean, professional supporting text and UI labels.</div>
+          <div class="type-name">Helvetica / Grotesk</div>
+        </div>
+        <div class="type-row">
+          <div class="type-eyebrow">Feel</div>
+          <div class="type-sample-2">Clean, smooth, premium. Generous space, tight letter-spacing on headlines, restraint everywhere else.</div>
+        </div>
       </div>
     </div>
-    <div class="wedge"><strong>Our wedge:</strong> AI is the first thing that fixes <em>both</em> leaks at once — it collapses the cost of producing creative AND the cost of instant follow-up. We sit on both ends. That's the moat and the message.</div>
   </div>
   <div class="section-divider"></div>
 
   <!-- 03 OFFERS -->
-  <div class="section" id="s3">
-    <div class="section-header"><span class="section-num">03</span><h2 class="section-title">Offers</h2></div>
-    <p class="lead">Two engines run on the same AI creative. The difference is what happens after the click — selling a product or booking a call. Then one upsell once they're in.</p>
-
-    <!-- ENGINE 01 -->
-    <div class="offer">
-      <div class="offer-top">
-        <div><span class="offer-badge">Engine 01</span></div>
-        <span class="status live">Primary · validated direction</span>
+  <div class="section reveal">
+    <div class="section-header"><span class="section-num">03</span><h2 class="section-title">The three offers</h2></div>
+    <p class="section-intro">One delivery engine — AI ads → funnel → conversion — pointed at three markets with three different conversion events. No single lead offer; all three run in parallel. The offer is named for the outcome; the engine inside is the same machine, skinned three ways.</p>
+    <div class="offer-grid">
+      <div class="offer-card">
+        <div class="offer-badge">Offer 01</div>
+        <div class="offer-name">Commerce</div>
+        <div class="offer-outcome">Sales, straight to checkout</div>
+        <div class="offer-line">AI ads → conversion funnel / webshop → CTA is buy.</div>
+        <div class="offer-meta-label">Conversion event</div>
+        <div class="offer-meta-val">The purchase.</div>
+        <div class="offer-meta-label">Built for</div>
+        <div class="offer-meta-val"><span class="muted">Ecommerce brands.</span></div>
       </div>
-      <div class="offer-name">The Storefront Engine</div>
-      <div class="offer-for">For ecom stores &amp; coaches who sell direct (no call needed)</div>
-      <div class="offer-grid2">
-        <div>
-          <div class="field-label">What's included</div>
-          <ul class="offer-list">
-            <li><span class="t">→</span> AI video ads at volume (UGC / product / hook-driven)</li>
-            <li><span class="t">→</span> Media buying &amp; account management</li>
-            <li><span class="t">→</span> Conversion-built webshop / landing page</li>
-            <li><span class="t">→</span> Continuous creative testing loop</li>
-          </ul>
-        </div>
-        <div>
-          <div class="field-label">The promise</div>
-          <div class="field-body promise">Click → purchase, with no human in the loop. Lower CPA through constant fresh creative the client could never produce at this speed alone.</div>
-          <div class="field-label" style="margin-top:18px;">Deliverable</div>
-          <div class="field-body">A live ad account + a page built to convert, refreshed on a cadence.</div>
-        </div>
+      <div class="offer-card">
+        <div class="offer-badge">Offer 02</div>
+        <div class="offer-name">Authority</div>
+        <div class="offer-outcome">Applications &amp; booked calls</div>
+        <div class="offer-line">AI ads → landing page → CTA is an application / call. Product design optional.</div>
+        <div class="offer-meta-label">Conversion event</div>
+        <div class="offer-meta-val">A qualified application.</div>
+        <div class="offer-meta-label">Built for</div>
+        <div class="offer-meta-val"><span class="muted">Online coaches &amp; mentors.</span></div>
       </div>
-    </div>
-
-    <!-- ENGINE 02 -->
-    <div class="offer">
-      <div class="offer-top">
-        <div><span class="offer-badge">Engine 02</span></div>
-        <span class="status val">In validation</span>
-      </div>
-      <div class="offer-name">The Booking Engine</div>
-      <div class="offer-for">For high-ticket service providers who close on appointments</div>
-      <div class="offer-grid2">
-        <div>
-          <div class="field-label">What's included</div>
-          <ul class="offer-list">
-            <li><span class="t">→</span> AI video ads at volume (tuned for lead-gen)</li>
-            <li><span class="t">→</span> AI lead-catcher: instant response to every form fill</li>
-            <li><span class="t">→</span> Qualification + routing to calendar</li>
-            <li><span class="t">→</span> Booked appointments handed to the client</li>
-          </ul>
-        </div>
-        <div>
-          <div class="field-label">The promise</div>
-          <div class="field-body promise">Booked, qualified appointments — not raw leads. Speed-to-lead stops being the bottleneck.</div>
-          <div class="field-label" style="margin-top:18px;">Status note</div>
-          <div class="field-body">Lead-catcher mechanics not concluded. See <strong>Open decisions (07)</strong> before selling this hard.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- UPSELL -->
-    <div class="offer upsell">
-      <div class="offer-top">
-        <div><span class="offer-badge">Upsell</span></div>
-        <span class="status up">Existing clients only</span>
-      </div>
-      <div class="offer-name">Backend automations</div>
-      <div class="offer-for">Sold once the front-end is working and trust is built</div>
-      <div class="offer-grid2">
-        <div>
-          <div class="field-label">What's included</div>
-          <ul class="offer-list">
-            <li><span class="t">→</span> Follow-up &amp; nurture sequences</li>
-            <li><span class="t">→</span> CRM hygiene &amp; pipeline automation</li>
-            <li><span class="t">→</span> Client onboarding flows</li>
-            <li><span class="t">→</span> Reporting &amp; internal ops automation</li>
-          </ul>
-        </div>
-        <div>
-          <div class="field-label">Why it's an upsell, not a lead offer</div>
-          <div class="field-body">Hard to sell cold — needs trust and access to their systems. Easy to sell once we've already made them money. Higher margin, stickier retention.</div>
-        </div>
+      <div class="offer-card">
+        <div class="offer-badge">Offer 03</div>
+        <div class="offer-name">Concierge</div>
+        <div class="offer-outcome">Booked appointments, on autopilot</div>
+        <div class="offer-line">AI ads → form → system flags the lead → AI voice agent calls in seconds → books the calendar.</div>
+        <div class="offer-meta-label">Conversion event</div>
+        <div class="offer-meta-val">A booked appointment.</div>
+        <div class="offer-meta-label">Built for</div>
+        <div class="offer-meta-val"><span class="muted">Appointment-based luxury businesses.</span></div>
       </div>
     </div>
   </div>
   <div class="section-divider"></div>
 
   <!-- 04 ICP -->
-  <div class="section" id="s4">
-    <div class="section-header"><span class="section-num">04</span><h2 class="section-title">ICP profiles</h2></div>
-    <p class="lead">So we both pitch the same person the same way. The common thread: <strong>high margin per sale</strong> — which is what makes a leaked impression or a cold lead actually expensive.</p>
-
-    <!-- ICP A -->
-    <div class="icp-card">
-      <span class="icp-tag a">Engine 01 buyer</span>
-      <div class="icp-name">Ecom stores &amp; coaches</div>
-      <div class="icp-role">Direct-to-buyer brands and program/course sellers</div>
-      <div class="icp-row"><div class="icp-rl">Pain (their words)</div><div class="icp-rv monologue">"My ads are stale, CPMs keep creeping up, and I can't shoot new creative fast enough to keep the account fresh. I'm scaling spend on tired ads."</div></div>
-      <div class="icp-row"><div class="icp-rl">Buying triggers</div><div class="icp-rv">Rising CPA · creative fatigue · launching a new product/offer · just got burned by a slow/expensive agency.</div></div>
-      <div class="icp-row"><div class="icp-rl">Where to find</div><div class="icp-rv">Shopify communities, ecom &amp; coaching groups, paid-traffic Twitter/X, their own ads (we can see who's running stale creative).</div></div>
-      <div class="icp-row"><div class="icp-rl">Primary objection</div><div class="icp-rv">"Will AI ads actually look good / convert?" → answer with sample creative for <strong>their</strong> brand, not explanation.</div></div>
-      <div class="icp-row"><div class="icp-rl">Good fit if</div><div class="icp-rv chips"><span>High-ticket DTC</span><span>Premium products</span><span>Online coaches</span><span>Course sellers</span><span>Already spending on ads</span></div></div>
-    </div>
-
-    <!-- ICP B -->
-    <div class="icp-card">
-      <span class="icp-tag b">Engine 02 buyer</span>
-      <div class="icp-name">High-ticket service providers</div>
-      <div class="icp-role">Businesses where the sale happens on a call / appointment</div>
-      <div class="icp-row"><div class="icp-rl">Pain (their words)</div><div class="icp-rv monologue">"Leads come in while I'm working. By the time I follow up, half have ghosted or already hired someone else. I'm losing deals I paid to generate."</div></div>
-      <div class="icp-row"><div class="icp-rl">Buying triggers</div><div class="icp-rv">Paying for leads that don't convert · missed calls/forms · solo or small team with no one to follow up fast · competitive local market.</div></div>
-      <div class="icp-row"><div class="icp-rl">Where to find</div><div class="icp-rv">Local service groups, industry-specific communities, lead-gen platform users (Angi, Google LSA, etc.), referrals from Engine 01 clients.</div></div>
-      <div class="icp-row"><div class="icp-rl">Primary objection</div><div class="icp-rv">"I tried a chatbot and it was terrible" / "my clients want a real person." → demo the actual experience + clarify it catches the leads they <strong>weren't getting to anyway.</strong></div></div>
-      <div class="icp-row"><div class="icp-rl">Good fit if</div><div class="icp-rv chips"><span>Consultants</span><span>Agencies</span><span>Med-spas / clinics</span><span>Home services</span><span>B2B sales teams</span><span>Appointment-based</span></div></div>
-    </div>
-  </div>
-  <div class="section-divider"></div>
-
-  <!-- 05 DELIVERY -->
-  <div class="section" id="s5">
-    <div class="section-header"><span class="section-num">05</span><h2 class="section-title">How we deliver</h2></div>
-    <p class="lead">The actual machinery behind the offers, so we're aligned on fulfillment and what we're promising is real.</p>
-    <div class="deliver-grid">
-      <div class="deliver-card">
-        <div class="deliver-step">Creative engine</div>
-        <div class="deliver-title">Higgsfield (Marketing Studio)</div>
-        <div class="deliver-body">AI video ads from a <strong>product URL or prompt</strong> — UGC factory, AI avatars, hook generator, 9:16 / 16:9 / 1:1. We add the human layer: angle selection, hooks, and which creative to scale. Volume from AI, taste from us.</div>
+  <div class="section reveal">
+    <div class="section-header"><span class="section-num">04</span><h2 class="section-title">Who we sell to — ICP per offer</h2></div>
+    <div class="icp-grid">
+      <div class="icp-card">
+        <span class="icp-tag">Commerce</span>
+        <div class="icp-name">Ecommerce brands</div>
+        <div class="icp-role">Broad — on purpose</div>
+        <div class="icp-body">Kept un-niched while we <strong>test the market</strong>. Run across categories where AI creative shines and ad policy allows — beauty, supplements, apparel, home/lifestyle, gadgets — then niche by evidence over the first 3–6 months.
+          <div class="flag"><strong>Note:</strong> mercenary, ROAS-driven buyers. The cashflow + fast-proof engine — don't let it carry the premium brand story.</div>
+        </div>
       </div>
-      <div class="deliver-card">
-        <div class="deliver-step">Conversion layer</div>
-        <div class="deliver-title">Page / webshop (Engine 01)</div>
-        <div class="deliver-body">Landing page or webshop built around the offer and products with a clean checkout. The thing the ad traffic actually lands on.</div>
+      <div class="icp-card">
+        <span class="icp-tag">Authority</span>
+        <div class="icp-name">Online coaches &amp; mentors</div>
+        <div class="icp-role">Umbrella ICP</div>
+        <div class="icp-body">High-ticket coaches and program creators who live in the ads → VSL → application → call funnel and understand ROAS.
+          <div class="flag"><strong>For execution:</strong> "coaches" is too broad to write one converting page for — pick the specific sub-audiences to speak to. Broad as the label, specific in the copy.</div>
+        </div>
       </div>
-      <div class="deliver-card">
-        <div class="deliver-step">Conversion layer</div>
-        <div class="deliver-title">AI lead-catcher (Engine 02)</div>
-        <div class="deliver-body">Instant response to every form fill → qualify → book to calendar. <strong>Exact build still to define</strong> (channel, depth of qualification, handoff). See section 07.</div>
-      </div>
-      <div class="deliver-card">
-        <div class="deliver-step">Backend layer</div>
-        <div class="deliver-title">Automations (upsell)</div>
-        <div class="deliver-body">CRM, nurture sequences, onboarding and reporting wired together so the operation runs with less manual work once a client is established.</div>
+      <div class="icp-card span2">
+        <span class="icp-tag">Concierge</span>
+        <div class="icp-name">Appointment-based luxury</div>
+        <div class="icp-role">Most locked of the three</div>
+        <div class="icp-body">High-ticket, high-consideration, consultative bookings — exactly where speed-to-lead is the product.
+          <ul class="icp-list">
+            <li><strong>Luxury real estate agents</strong> — local, affluent, inquiry → viewing.</li>
+            <li><strong>Luxury home design</strong> — same affluent-homeowner ICP; natural cross-referral with real estate. One local "luxury property" cluster.</li>
+            <li><strong>High-ticket concierge stays / resorts</strong> — under consideration. Fenced to inquiry/concierge bookings (private villas, retreats, group/event) — <em>not</em> OTA / instant-checkout. Destination targeting + seasonality = a separate playbook from the local pair.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
   <div class="section-divider"></div>
 
-  <!-- 06 SPEED -->
-  <div class="section" id="s6">
-    <div class="section-header"><span class="section-num">06</span><h2 class="section-title">Why speed wins — the data behind Engine 02</h2></div>
-    <p class="lead">This is the proof that makes the Booking Engine an easy yes. Memorize these — they're the whole pitch.</p>
-    <div class="bar-row"><div class="bar-label">Reply &lt; 5 min</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-pct">100×</div></div>
-    <div class="bar-row"><div class="bar-label">Reply &lt; 30 min</div><div class="bar-track"><div class="bar-fill" style="width:48%"></div></div><div class="bar-pct">~21×</div></div>
-    <div class="bar-row"><div class="bar-label">Reply &lt; 1 hour</div><div class="bar-track"><div class="bar-fill" style="width:22%"></div></div><div class="bar-pct">7×</div></div>
-    <div class="bar-row"><div class="bar-label">Reply after 24h</div><div class="bar-track"><div class="bar-fill slow" style="width:6%"></div></div><div class="bar-pct slow">1×</div></div>
-    <div class="note"><strong>Reach a lead within 5 minutes</strong> and you're ~21× more likely to qualify it vs. waiting 30 minutes, and ~100× more likely to make contact at all. <strong>78% of buyers go with whoever responds first.</strong> Most businesses take 40+ hours.</div>
-    <div class="source">Source: Lead Response Management / Harvard Business Review study (Oldroyd et al.) — 2,200+ companies, 100,000+ leads. Bars show relative likelihood of qualifying by response window.</div>
+  <!-- 05 PACKAGING -->
+  <div class="section reveal">
+    <div class="section-header"><span class="section-num">05</span><h2 class="section-title">Packaging — the stone ladder</h2></div>
+    <div class="tier-system-note">The same three tiers sit inside <strong>every</strong> offer. The <strong>engine</strong> decides what's inside; the <strong>stone</strong> signals the level. Additions don't get their own names — they <strong>tier you up</strong>. So "add social media management" literally means "move to Sapphire." A client buys <em>Concierge Emerald</em>, then becomes <em>Concierge Sapphire</em> the moment they add social.</div>
+    <div class="tier-grid">
+      <div class="tier-card">
+        <div class="tier-stone"><span class="tier-dot" style="background:#8a64f0;"></span><span class="tier-name">Emerald</span></div>
+        <div class="tier-level">Foundation</div>
+        <ul class="tier-list">
+          <li class="base">The core engine only</li>
+          <li class="base">AI ads + the offer's funnel / landing / lead-capture</li>
+        </ul>
+        <div class="tier-price">Entry point · <b>price [ fill ]</b></div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-stone"><span class="tier-dot" style="background:#b6a0ff;"></span><span class="tier-name">Sapphire</span></div>
+        <div class="tier-level">Growth</div>
+        <ul class="tier-list">
+          <li class="base">Everything in Emerald</li>
+          <li><strong>Social media management</strong></li>
+        </ul>
+        <div class="tier-price">The "most pick this" middle · <b>price [ fill ]</b></div>
+      </div>
+      <div class="tier-card flagship">
+        <div class="tier-stone"><span class="tier-dot" style="background:#DDFF00;"></span><span class="tier-name lime-grad">Diamond</span></div>
+        <div class="tier-level">Flagship</div>
+        <ul class="tier-list">
+          <li class="base">Everything in Sapphire</li>
+          <li><strong>AI backend automation</strong></li>
+          <li><strong>Exclusive results dashboard</strong></li>
+          <li><strong>GEO / AI visibility</strong></li>
+          <li>Priority everything</li>
+          <li class="base"><em>Authority Diamond also folds in product design</em></li>
+        </ul>
+        <div class="tier-price">The namesake tier · <b>price [ fill ]</b></div>
+      </div>
+    </div>
+    <div class="blackdiamond">
+      <span class="bd-dot"></span>
+      <div class="bd-text"><strong>Black Diamond</strong> — invite-only, bespoke, capped, price unpublished. Parked for later. Its job: anchor Diamond as the sensible choice and give the biggest clients somewhere to climb.</div>
+      <span class="bd-tag">Future · by application</span>
+    </div>
   </div>
   <div class="section-divider"></div>
 
-  <!-- 07 DECISIONS -->
-  <div class="section" id="s7">
-    <div class="section-header"><span class="section-num">07</span><h2 class="section-title">Open decisions — settle these</h2></div>
-    <p class="lead">The things we haven't concluded. Don't sell around these until we've decided.</p>
+  <!-- 06 ADD-ONS -->
+  <div class="section reveal">
+    <div class="section-header"><span class="section-num">06</span><h2 class="section-title">Add-ons — what tiers you up</h2></div>
+    <div class="addon-list">
+      <div class="addon-row">
+        <div class="addon-name">Social media management</div>
+        <div class="addon-desc">The headline addition. Takes any offer from Emerald to Sapphire.</div>
+        <span class="addon-tier sapphire">→ Sapphire</span>
+      </div>
+      <div class="addon-row">
+        <div class="addon-name">AI backend automation</div>
+        <div class="addon-desc">The ultimate upsell. Lead routing, CRM hygiene, reporting, fulfillment ops, AI support. Stickiness = once their ops run on it, leaving means rebuilding their business.</div>
+        <span class="addon-tier diamond">→ Diamond</span>
+      </div>
+      <div class="addon-row">
+        <div class="addon-name">Exclusive results dashboard</div>
+        <div class="addon-desc">Premium, client-facing, real-time. A differentiator and a retention hook — most agencies send ugly spreadsheets.</div>
+        <span class="addon-tier diamond">→ Diamond</span>
+      </div>
+      <div class="addon-row">
+        <div class="addon-name">GEO / AI visibility</div>
+        <div class="addon-desc">Get the client cited &amp; recommended by ChatGPT, Gemini, Perplexity. Long-game authority layer — sell it next to the fast engines.</div>
+        <span class="addon-tier diamond">→ Diamond / à la carte</span>
+      </div>
+      <div class="addon-row">
+        <div class="addon-name">Product design</div>
+        <div class="addon-desc">Building the actual course / mentorship / offer. Native to Authority. High value, but cap it and scope it as a fixed sprint.</div>
+        <span class="addon-tier native">Authority</span>
+      </div>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 07 ENGINE ROLES -->
+  <div class="section reveal">
+    <div class="section-header"><span class="section-num">07</span><h2 class="section-title">What each engine is for</h2></div>
+    <div class="role-grid">
+      <div class="role-card">
+        <div class="role-engine">Commerce</div>
+        <div class="role-tag">Cashflow · proof</div>
+        <div class="role-desc">Fastest path to results and case studies (days, not months). Volume and revenue while the others build the premium narrative.</div>
+      </div>
+      <div class="role-card">
+        <div class="role-engine">Authority</div>
+        <div class="role-tag">LTV · relationship</div>
+        <div class="role-desc">High lifetime value, trust-driven sales, recurring. The brand-builder's engine — slower to close, stickier once in.</div>
+      </div>
+      <div class="role-card">
+        <div class="role-engine">Concierge</div>
+        <div class="role-tag">Premium · high-consideration</div>
+        <div class="role-desc">Most defensible mechanic — speed-to-lead is a number the client feels immediately. The high-ticket, premium-vibe engine.</div>
+      </div>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 08 BOTTLENECKS -->
+  <div class="section reveal">
+    <div class="section-header"><span class="section-num">08</span><h2 class="section-title">Bottlenecks to design around</h2></div>
+    <div class="bottleneck-list">
+      <div class="bottleneck">
+        <div class="bottleneck-head"><span class="bottleneck-num">RISK 01</span><span class="bottleneck-title">Proof concentration</span></div>
+        <div class="bottleneck-body">Three engines means you need credible proof in three categories before any one looks legit. Spread the first clients too thin and you're "the agency for X" in none.</div>
+        <div class="bottleneck-move"><b>Move:</b> track case studies per engine from day one and double down where traction shows first — let proof decide, not a pre-picked favorite.</div>
+      </div>
+      <div class="bottleneck">
+        <div class="bottleneck-head"><span class="bottleneck-num">RISK 02</span><span class="bottleneck-title">Context-switching tax</span></div>
+        <div class="bottleneck-body">Each engine is a different stack and metric — Commerce is campaign-burst, Concierge is ongoing ops, product design is deep founder-brain work. Flipping daily erodes quality.</div>
+        <div class="bottleneck-move"><b>Move:</b> batch by engine in blocks; write the SOP for an engine before selling the second client in it.</div>
+      </div>
+      <div class="bottleneck">
+        <div class="bottleneck-head"><span class="bottleneck-num">RISK 03</span><span class="bottleneck-title">Concierge unit economics</span></div>
+        <div class="bottleneck-body">Voice-AI lead capture is usually priced per-lead / per-minute, so cost-to-serve scales with the client's volume. A high-volume client can become the least profitable one.</div>
+        <div class="bottleneck-move"><b>Move:</b> make the voice cost a pass-through or volume-tier — don't absorb it into a flat retainer.</div>
+      </div>
+      <div class="bottleneck">
+        <div class="bottleneck-head"><span class="bottleneck-num">RISK 04</span><span class="bottleneck-title">Product design throughput</span></div>
+        <div class="bottleneck-body">It's the least systematizable thing on offer and it lives in your heads. One demanding coach can stall the whole shop.</div>
+        <div class="bottleneck-move"><b>Move:</b> cap concurrent builds; scope product design as a fixed high-ticket sprint with a hard deliverable boundary.</div>
+      </div>
+      <div class="bottleneck">
+        <div class="bottleneck-head"><span class="bottleneck-num">RISK 05</span><span class="bottleneck-title">Dashboard build cost &amp; GEO timeline</span></div>
+        <div class="bottleneck-body">The dashboard has to show three metric sets (sales/ROAS, applications, booked appointments). And GEO results build over months, not days.</div>
+        <div class="bottleneck-move"><b>Move:</b> build the dashboard modular (one shell, three metric templates). Position GEO as a long-game layer — and run it on Diamant itself first.</div>
+      </div>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 09 DECISIONS -->
+  <div class="section reveal">
+    <div class="section-header"><span class="section-num">09</span><h2 class="section-title">Open decisions — settle with cofounder</h2></div>
     <div class="decision">
-      <div class="decision-q"><span class="marker">▸</span> Does the AI lead-catcher stay in the offer — and in what form?</div>
-      <div class="decision-body">Channel: SMS vs. voice AI vs. web chat? How deep does qualification go before a human takes over? Where's the handoff? A robotic or mistimed response can burn a high-ticket lead worse than a slow human — design the failure modes first.</div>
-    </div>
-    <div class="decision">
-      <div class="decision-q"><span class="marker">▸</span> Pricing &amp; packaging model</div>
-      <div class="decision-body">Setup fee + monthly retainer? Performance / per-booked-appointment? Per-engine pricing? Need a number we can both quote with confidence. [ fill ]</div>
+      <div class="decision-q"><span class="marker">▸</span> Pricing — everything</div>
+      <div class="decision-body">A number we can both quote with confidence for all 9 cells (3 offers × 3 stones), plus add-on pricing. This is the priority. [ fill ]</div>
     </div>
     <div class="decision">
       <div class="decision-q"><span class="marker">▸</span> Fulfillment capacity</div>
-      <div class="decision-body">How many clients can we actually deliver for at once before quality drops? What's the cap before we hire or systematize harder? [ fill ]</div>
+      <div class="decision-body">Max concurrent clients per engine before quality drops. What's the cap before we hire or systematize harder? [ fill ]</div>
     </div>
     <div class="decision">
-      <div class="decision-q"><span class="marker">▸</span> Lead the funnel with one engine or both?</div>
-      <div class="decision-body">Engine 01 is more validated. Do we focus all outbound on it first and treat Engine 02 as a referral/expansion play, or run both from day one?</div>
+      <div class="decision-q"><span class="marker">▸</span> Lead offer?</div>
+      <div class="decision-body">Current call: <span class="note">no designated lead — all three run in parallel.</span> If we ever choose a spearhead, instinct is Authority. For now, balance attention so no engine starves.</div>
+    </div>
+    <div class="decision">
+      <div class="decision-q"><span class="marker">▸</span> Resort fence</div>
+      <div class="decision-body">Add high-ticket concierge stays to Concierge — yes/no — and confirm we restrict to inquiry/concierge bookings only. [ decide ]</div>
+    </div>
+    <div class="decision">
+      <div class="decision-q"><span class="marker">▸</span> Authority sub-audiences</div>
+      <div class="decision-body">The specific coaching sub-niches we write ads + landing copy to (even though the ICP label stays broad). [ fill ]</div>
+    </div>
+    <div class="decision">
+      <div class="decision-q"><span class="marker">▸</span> Name + identity lock</div>
+      <div class="decision-body">Confirm "Diamant" final; secure domain + socials. [ fill ]</div>
     </div>
   </div>
   <div class="section-divider"></div>
 
-  <!-- 08 NEXT -->
-  <div class="section action-block" id="s8">
-    <div class="section-header"><span class="section-num">08</span><h2 class="section-title">Next steps &amp; ownership</h2></div>
+  <!-- 10 NEXT -->
+  <div class="section reveal action-block">
+    <div class="section-header"><span class="section-num">10</span><h2 class="section-title">Next steps &amp; ownership</h2></div>
     <div class="next-grid">
-      <div class="next-card feature">
-        <div class="next-title">To build &amp; launch</div>
-        <div class="build-grid">
-          <div class="build-item">
-            <div class="bi-name">Socials</div>
-            <div class="bi-note">Set up brand accounts (IG, TikTok, X, LinkedIn) and start posting to build presence and proof.</div>
-          </div>
-          <div class="build-item">
-            <div class="bi-name">Visuals</div>
-            <div class="bi-note">Brand identity — logo, palette, fonts, and reusable templates for ads and content.</div>
-          </div>
-          <div class="build-item">
-            <div class="bi-name">Webpage</div>
-            <div class="bi-note">Build the public site / landing page so prospects can see what we do and reach us.</div>
-          </div>
-          <div class="build-item">
-            <div class="bi-name">Ad campaign</div>
-            <div class="bi-note">Launch the first paid campaign with a sample creative set to validate the engine.</div>
-          </div>
-        </div>
+      <div class="next-card wide">
+        <div class="next-title">This week — shared</div>
+        <ul>
+          <li>Lock pricing for everything — all 9 cells + add-ons</li>
+          <li>Sort out the brand view + a clear, quotable statement of what we stand for</li>
+          <li>Settle the open decisions (resort fence, Authority sub-audiences)</li>
+          <li>Build one sample creative set for outreach</li>
+        </ul>
       </div>
       <div class="next-card">
         <div class="next-title">Founder — [ name ]</div>
-        <ul>
-          <li>[ task ]</li>
-          <li>[ task ]</li>
-          <li>[ task ]</li>
-        </ul>
+        <ul><li>[ task ]</li><li>[ task ]</li><li>[ task ]</li></ul>
       </div>
       <div class="next-card">
         <div class="next-title">Cofounder — [ name ]</div>
-        <ul>
-          <li>[ task ]</li>
-          <li>[ task ]</li>
-          <li>[ task ]</li>
-        </ul>
+        <ul><li>[ task ]</li><li>[ task ]</li><li>[ task ]</li></ul>
       </div>
-      <div class="next-card">
-        <div class="next-title">This week — shared</div>
-        <ul>
-          <li>Lock Engine 02 lead-catcher decision</li>
-          <li>Agree pricing for Engine 01</li>
-          <li>Build 1 sample creative set for outreach</li>
-        </ul>
-      </div>
-      <div class="next-card">
+      <div class="next-card wide">
         <div class="next-title">Before first client</div>
         <ul>
-          <li>Define onboarding steps</li>
-          <li>Pick the tools/stack for each engine</li>
-          <li>Write the core outreach message</li>
+          <li>Define onboarding steps per engine</li>
+          <li>Pick + document the tool stack for each engine</li>
+          <li>Write SOPs per engine (start with whichever runs first)</li>
+          <li>Stand up brand: site, socials, the exclusive dashboard shell</li>
         </ul>
       </div>
     </div>
@@ -575,10 +656,17 @@
 
   <!-- FOOTER -->
   <div class="doc-footer">
-    <div class="footer-brand">VYRA</div>
-    <div class="footer-note">Internal operating doc · founders only · v0.1</div>
+    <div class="footer-brand"><span class="mark">Diamant</span></div>
+    <div class="footer-note">Internal operating doc · founders only · v0.2</div>
   </div>
 
 </div>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
 </body>
 </html>
